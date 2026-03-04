@@ -13,25 +13,25 @@ red        = "#D4252C"  # Error / alert
 green      = "#43AD49"  # Success
 gray       = "#A5A8AF"  # Muted text
 light_gray = "#E7E6E6"  # Light surfaces
-dark       = "#1C1C1E"  # Dark background
+dark       = "#1E1C1A"  # Dark background
 dark_gray  = "#44546A"  # Secondary text
 
 # ── Dark Theme ───────────────────────────────────────────────
 [dark]
 
 # Background ramp (6 steps: deep → surface → overlay)
-bg_deep    = "#141416"
-bg         = "#1C1C1E"
-bg_dim     = "#242426"
-bg_alt     = "#2C2C2E"
-bg_hl      = "#3A3A3E"
-bg_overlay = "#484850"
+bg_deep    = "#161412"
+bg         = "#1E1C1A"
+bg_dim     = "#262422"
+bg_alt     = "#2E2C2A"
+bg_hl      = "#3E3A38"
+bg_overlay = "#504848"
 
 # Foreground ramp (4 steps: main → dim → subtle → muted)
-fg         = "#D8D8DC"
-fg_dim     = "#B0B0B6"
-fg_subtle  = "#8E8E96"
-fg_muted   = "#6E6E78"
+fg         = "#DCD8D4"
+fg_dim     = "#B6B0AC"
+fg_subtle  = "#96908C"
+fg_muted   = "#787068"
 
 # Core colors — brightened for dark bg readability
 blue       = "#4A6ABF"   # Brightened brand blue (ANSI slot)
@@ -64,10 +64,10 @@ yellow_dim   = "#C9A63E"
 yellow_bright = "#F5DA7F"
 
 # Utility
-cursor     = "#D8D8DC"
+cursor     = "#DCD8D4"
 selection   = "#2D4A6A"
-border     = "#3A3A3E"
-comment    = "#6E6E78"
+border     = "#3E3A38"
+comment    = "#787068"
 
 # ── Light Theme ──────────────────────────────────────────────
 [light]
@@ -124,7 +124,7 @@ comment    = "#7A7A84"
 
 # ── ANSI 16 (Dark) ──────────────────────────────────────────
 [dark.ansi]
-black          = "#141416"
+black          = "#161412"
 red            = "#D4252C"
 green          = "#43AD49"
 yellow         = "#FEA413"
@@ -133,14 +133,14 @@ magenta        = "#9B6ABF"
 cyan           = "#3A9BA5"
 white          = "#A5A8AF"
 
-bright_black   = "#6E6E78"
+bright_black   = "#787068"
 bright_red     = "#E85B61"
 bright_green   = "#6BCF70"
 bright_yellow  = "#FFBD4A"
 bright_blue    = "#6B8AD8"
 bright_magenta = "#BB8EDA"
 bright_cyan    = "#5CBDC7"
-bright_white   = "#D8D8DC"
+bright_white   = "#DCD8D4"
 
 # ── ANSI 16 (Light) ─────────────────────────────────────────
 [light.ansi]
