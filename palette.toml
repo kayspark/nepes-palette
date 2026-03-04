@@ -1,0 +1,197 @@
+# Nepes Corporate Colorscheme — Single Source of Truth
+# Derived from nepes-latex-template brand colors (nepes-colors.sty)
+#
+# Two-tier system:
+#   1. Named colors — brand + shade ramps + extended colors
+#   2. Semantic mappings — role-based assignments for syntax/UI
+
+# ── Brand Colors ─────────────────────────────────────────────
+[brand]
+blue       = "#23438E"  # Primary brand (too dark for ANSI; used for headings/chrome)
+orange     = "#FEA413"  # Accent / warning
+red        = "#D4252C"  # Error / alert
+green      = "#43AD49"  # Success
+gray       = "#A5A8AF"  # Muted text
+light_gray = "#E7E6E6"  # Light surfaces
+dark       = "#1C1C1E"  # Dark background
+dark_gray  = "#44546A"  # Secondary text
+
+# ── Dark Theme ───────────────────────────────────────────────
+[dark]
+
+# Background ramp (6 steps: deep → surface → overlay)
+bg_deep    = "#141416"
+bg         = "#1C1C1E"
+bg_dim     = "#242426"
+bg_alt     = "#2C2C2E"
+bg_hl      = "#3A3A3E"
+bg_overlay = "#484850"
+
+# Foreground ramp (4 steps: main → dim → subtle → muted)
+fg         = "#D8D8DC"
+fg_dim     = "#B0B0B6"
+fg_subtle  = "#8E8E96"
+fg_muted   = "#6E6E78"
+
+# Core colors — brightened for dark bg readability
+blue       = "#4A6ABF"   # Brightened brand blue (ANSI slot)
+blue_dim   = "#23438E"   # Original brand blue (headings, chrome)
+blue_bright= "#6B8AD8"   # Bright variant
+
+red        = "#D4252C"
+red_dim    = "#A81E23"
+red_bright = "#E85B61"
+
+green      = "#43AD49"
+green_dim  = "#348A3A"
+green_bright = "#6BCF70"
+
+orange     = "#FEA413"
+orange_dim = "#CC8410"
+orange_bright = "#FFBD4A"
+
+# Extended colors (not in brand, needed for syntax variety)
+magenta      = "#9B6ABF"
+magenta_dim  = "#7A4FA0"
+magenta_bright = "#BB8EDA"
+
+cyan         = "#3A9BA5"
+cyan_dim     = "#2D7A82"
+cyan_bright  = "#5CBDC7"
+
+yellow       = "#E8C55A"
+yellow_dim   = "#C9A63E"
+yellow_bright = "#F5DA7F"
+
+# Utility
+cursor     = "#D8D8DC"
+selection   = "#2D4A6A"
+border     = "#3A3A3E"
+comment    = "#6E6E78"
+
+# ── Light Theme ──────────────────────────────────────────────
+[light]
+
+# Background ramp
+bg_deep    = "#FFFFFF"
+bg         = "#F8F8F8"
+bg_dim     = "#F0F0F0"
+bg_alt     = "#E7E6E6"
+bg_hl      = "#D8D7D7"
+bg_overlay = "#C9C8C8"
+
+# Foreground ramp
+fg         = "#1C1C1E"
+fg_dim     = "#3A3A3E"
+fg_subtle  = "#5A5A64"
+fg_muted   = "#7A7A84"
+
+# Core colors — darkened for light bg readability
+blue       = "#23438E"   # Original brand blue works well on light
+blue_dim   = "#1B3470"
+blue_bright= "#2E55B0"
+
+red        = "#C4181F"
+red_dim    = "#9E1319"
+red_bright = "#D4252C"
+
+green      = "#2E8A34"
+green_dim  = "#246C29"
+green_bright = "#43AD49"
+
+orange     = "#D08A10"
+orange_dim = "#A86E0D"
+orange_bright = "#FEA413"
+
+# Extended
+magenta      = "#7A4FA0"
+magenta_dim  = "#613E80"
+magenta_bright = "#9B6ABF"
+
+cyan         = "#2D7A82"
+cyan_dim     = "#236068"
+cyan_bright  = "#3A9BA5"
+
+yellow       = "#9A7E20"
+yellow_dim   = "#7C6519"
+yellow_bright = "#C9A63E"
+
+# Utility
+cursor     = "#1C1C1E"
+selection   = "#B8D0F0"
+border     = "#D8D7D7"
+comment    = "#7A7A84"
+
+# ── ANSI 16 (Dark) ──────────────────────────────────────────
+[dark.ansi]
+black          = "#141416"
+red            = "#D4252C"
+green          = "#43AD49"
+yellow         = "#FEA413"
+blue           = "#4A6ABF"
+magenta        = "#9B6ABF"
+cyan           = "#3A9BA5"
+white          = "#A5A8AF"
+
+bright_black   = "#6E6E78"
+bright_red     = "#E85B61"
+bright_green   = "#6BCF70"
+bright_yellow  = "#FFBD4A"
+bright_blue    = "#6B8AD8"
+bright_magenta = "#BB8EDA"
+bright_cyan    = "#5CBDC7"
+bright_white   = "#D8D8DC"
+
+# ── ANSI 16 (Light) ─────────────────────────────────────────
+[light.ansi]
+black          = "#1C1C1E"
+red            = "#C4181F"
+green          = "#2E8A34"
+yellow         = "#D08A10"
+blue           = "#23438E"
+magenta        = "#7A4FA0"
+cyan           = "#2D7A82"
+white          = "#E7E6E6"
+
+bright_black   = "#7A7A84"
+bright_red     = "#D4252C"
+bright_green   = "#43AD49"
+bright_yellow  = "#FEA413"
+bright_blue    = "#2E55B0"
+bright_magenta = "#9B6ABF"
+bright_cyan    = "#3A9BA5"
+bright_white   = "#F8F8F8"
+
+# ── Semantic Mappings ────────────────────────────────────────
+# These map abstract roles to named colors above.
+# Each tool translates these into its native highlight groups.
+[semantic]
+keyword    = "blue"
+builtin    = "blue_bright"
+function   = "cyan"
+string     = "green"
+type       = "magenta"
+constant   = "orange"
+number     = "orange"
+variable   = "fg"
+parameter  = "fg_dim"
+operator   = "fg_subtle"
+comment    = "comment"       # maps to utility.comment
+error      = "red"
+warning    = "orange"
+info       = "blue"
+hint       = "cyan"
+success    = "green"
+added      = "green"
+changed    = "orange"
+removed    = "red"
+
+# Heading rainbow (1-8 cycle)
+heading1   = "blue"
+heading2   = "magenta"
+heading3   = "cyan"
+heading4   = "green"
+heading5   = "orange"
+heading6   = "red"
+heading7   = "yellow"
+heading8   = "blue_bright"
