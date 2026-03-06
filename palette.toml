@@ -33,12 +33,12 @@ fg_dim     = "#B6B0AC"
 fg_subtle  = "#96908C"
 fg_muted   = "#787068"
 
-# Core colors — brightened for dark bg readability
-blue       = "#4A6ABF"   # Brightened brand blue (ANSI slot)
+# Core colors — brightened for dark bg readability (WCAG AA ≥ 4.5:1)
+blue       = "#6A84CA"   # Brightened brand blue (ANSI slot, ratio=4.66)
 blue_dim   = "#23438E"   # Original brand blue (headings, chrome)
 blue_bright= "#6B8AD8"   # Bright variant
 
-red        = "#D4252C"
+red        = "#E1575C"   # Brightened for AA contrast (ratio=4.63)
 red_dim    = "#A81E23"
 red_bright = "#E85B61"
 
@@ -51,7 +51,7 @@ orange_dim = "#CC8410"
 orange_bright = "#FFBD4A"
 
 # Extended colors (not in brand, needed for syntax variety)
-magenta      = "#9B6ABF"
+magenta      = "#A274C3"   # Brightened for AA contrast (ratio=4.71)
 magenta_dim  = "#7A4FA0"
 magenta_bright = "#BB8EDA"
 
@@ -67,7 +67,7 @@ yellow_bright = "#F5DA7F"
 cursor     = "#DCD8D4"
 selection   = "#2D4A6A"
 border     = "#3E3A38"
-comment    = "#787068"
+comment    = "#8D847B"   # Brightened for AA contrast (ratio=4.63)
 
 # ── Light Theme ──────────────────────────────────────────────
 [light]
@@ -95,12 +95,12 @@ red        = "#C4181F"
 red_dim    = "#9E1319"
 red_bright = "#D4252C"
 
-green      = "#2E8A34"
+green      = "#2A8030"   # Darkened for AA contrast (ratio=4.68)
 green_dim  = "#246C29"
 green_bright = "#43AD49"
 
 orange     = "#D08A10"
-orange_dim = "#A86E0D"
+orange_dim = "#99640B"   # Darkened for AA contrast (ratio=4.73, used for semantic roles)
 orange_bright = "#FEA413"
 
 # Extended
@@ -112,7 +112,7 @@ cyan         = "#2D7A82"
 cyan_dim     = "#236068"
 cyan_bright  = "#3A9BA5"
 
-yellow       = "#9A7E20"
+yellow       = "#866E1C"   # Darkened for AA contrast (ratio=4.64)
 yellow_dim   = "#7C6519"
 yellow_bright = "#C9A63E"
 
@@ -120,20 +120,20 @@ yellow_bright = "#C9A63E"
 cursor     = "#1C1C1E"
 selection   = "#B8D0F0"
 border     = "#D8D7D7"
-comment    = "#7A7A84"
+comment    = "#707079"   # Darkened for AA contrast (ratio=4.62)
 
 # ── ANSI 16 (Dark) ──────────────────────────────────────────
 [dark.ansi]
 black          = "#161412"
-red            = "#D4252C"
+red            = "#E1575C"
 green          = "#43AD49"
 yellow         = "#FEA413"
-blue           = "#4A6ABF"
-magenta        = "#9B6ABF"
+blue           = "#6A84CA"
+magenta        = "#A274C3"
 cyan           = "#3A9BA5"
 white          = "#A5A8AF"
 
-bright_black   = "#787068"
+bright_black   = "#8D847B"
 bright_red     = "#E85B61"
 bright_green   = "#6BCF70"
 bright_yellow  = "#FFBD4A"
@@ -146,14 +146,14 @@ bright_white   = "#DCD8D4"
 [light.ansi]
 black          = "#1C1C1E"
 red            = "#C4181F"
-green          = "#2E8A34"
+green          = "#2A8030"
 yellow         = "#D08A10"
 blue           = "#23438E"
 magenta        = "#7A4FA0"
 cyan           = "#2D7A82"
 white          = "#E7E6E6"
 
-bright_black   = "#7A7A84"
+bright_black   = "#707079"
 bright_red     = "#D4252C"
 bright_green   = "#43AD49"
 bright_yellow  = "#FEA413"
@@ -161,6 +161,18 @@ bright_blue    = "#2E55B0"
 bright_magenta = "#9B6ABF"
 bright_cyan    = "#3A9BA5"
 bright_white   = "#F8F8F8"
+
+# ── Per-theme Semantic Overrides ────────────────────────────
+# Override shared [semantic] mappings where a theme needs a different variant.
+
+[light.semantic]
+# Light orange (#D08A10) fails WCAG AA on #F8F8F8 (ratio=2.7).
+# Use orange_dim (#99640B, ratio=4.73) for semantic roles.
+constant   = "orange_dim"
+number     = "orange_dim"
+warning    = "orange_dim"
+changed    = "orange_dim"
+heading5   = "orange_dim"
 
 # ── Semantic Mappings ────────────────────────────────────────
 # These map abstract roles to named colors above.

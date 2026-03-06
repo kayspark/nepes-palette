@@ -1,0 +1,24 @@
+[project]
+name = "nepes-palette"
+version = "0.1.0"
+description = "Nepes corporate colorscheme generator and validator"
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib>=3.9",
+    "colormath>=3.0",
+]
+
+[project.scripts]
+nepes-palette = "nepes_palette.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nepes_palette"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
