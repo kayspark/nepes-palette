@@ -6,6 +6,8 @@ from nepes_palette.generators.lazygit import generate_lazygit
 from nepes_palette.generators.fzf import generate_fzf
 from nepes_palette.generators.lsd import generate_lsd
 from nepes_palette.generators.fish import generate_fish
+from nepes_palette.generators.chrome import generate_chrome
+from nepes_palette.generators.raycast import generate_raycast
 
 PALETTE_PATH = Path(__file__).parent.parent / "palette.toml"
 
@@ -77,3 +79,42 @@ def test_generate_fish_light():
     palette = load_palette(PALETTE_PATH)
     result = generate_fish(palette, "light")
     assert "Nepes Light" in result
+
+def test_generate_chrome_dark():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_chrome(palette, "dark")
+    import json
+    manifest = json.loads(result)
+    assert manifest["manifest_version"] == 3
+    assert manifest["name"] == "Nepes Dark"
+    assert "frame" in manifest["theme"]["colors"]
+    assert "toolbar" in manifest["theme"]["colors"]
+    assert manifest["theme"]["colors"]["tab_text"] == [220, 216, 212]  # #DCD8D4
+
+def test_generate_chrome_light():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_chrome(palette, "light")
+    import json
+    manifest = json.loads(result)
+    assert manifest["name"] == "Nepes Light"
+    assert manifest["theme"]["colors"]["tab_text"] == [28, 28, 30]  # #1C1C1E
+
+def test_generate_raycast_dark():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_raycast(palette, "dark")
+    import json
+    theme = json.loads(result)
+    assert theme["name"] == "Nepes Dark"
+    assert theme["appearance"] == "dark"
+    assert theme["colors"]["background"] == "#1E1C1A"
+    assert theme["colors"]["text"] == "#DCD8D4"
+    assert theme["colors"]["tint"] == "#6A84CA"
+
+def test_generate_raycast_light():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_raycast(palette, "light")
+    import json
+    theme = json.loads(result)
+    assert theme["name"] == "Nepes Light"
+    assert theme["appearance"] == "light"
+    assert theme["colors"]["background"] == "#F8F8F8"
