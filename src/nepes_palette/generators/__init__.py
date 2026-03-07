@@ -10,6 +10,10 @@ def generate_all(palette: dict, output_dir: Path):
     from .fish import generate_fish
     from .chrome import generate_chrome
     from .raycast import generate_raycast
+    from .kitty import generate_kitty
+    from .yazi import generate_yazi
+    from .gitui import generate_gitui
+    from .slack import generate_slack
 
     generators = {
         "bat-nepes": [
@@ -42,6 +46,22 @@ def generate_all(palette: dict, output_dir: Path):
         "raycast-nepes": [
             ("nepes-dark.json", lambda: generate_raycast(palette, "dark")),
             ("nepes-light.json", lambda: generate_raycast(palette, "light")),
+        ],
+        "kitty-nepes": [
+            ("nepes-dark.conf", lambda: generate_kitty(palette, "dark")),
+            ("nepes-light.conf", lambda: generate_kitty(palette, "light")),
+        ],
+        "yazi-nepes": [
+            ("nepes-dark.toml", lambda: generate_yazi(palette, "dark")),
+            ("nepes-light.toml", lambda: generate_yazi(palette, "light")),
+        ],
+        "gitui-nepes": [
+            ("nepes-dark.ron", lambda: generate_gitui(palette, "dark")),
+            ("nepes-light.ron", lambda: generate_gitui(palette, "light")),
+        ],
+        "slack-nepes": [
+            ("nepes-dark.txt", lambda: generate_slack(palette, "dark")),
+            ("nepes-light.txt", lambda: generate_slack(palette, "light")),
         ],
     }
 

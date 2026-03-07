@@ -8,6 +8,10 @@ from nepes_palette.generators.lsd import generate_lsd
 from nepes_palette.generators.fish import generate_fish
 from nepes_palette.generators.chrome import generate_chrome
 from nepes_palette.generators.raycast import generate_raycast
+from nepes_palette.generators.kitty import generate_kitty
+from nepes_palette.generators.yazi import generate_yazi
+from nepes_palette.generators.gitui import generate_gitui
+from nepes_palette.generators.slack import generate_slack
 
 PALETTE_PATH = Path(__file__).parent.parent / "palette.toml"
 
@@ -118,3 +122,56 @@ def test_generate_raycast_light():
     assert theme["name"] == "Nepes Light"
     assert theme["appearance"] == "light"
     assert theme["colors"]["background"] == "#F8F8F8"
+
+def test_generate_kitty_dark():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_kitty(palette, "dark")
+    assert "foreground" in result
+    assert "background" in result
+    assert "color0" in result
+    assert "color15" in result
+
+def test_generate_kitty_light():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_kitty(palette, "light")
+    assert "Nepes Light" in result
+
+def test_generate_yazi_dark():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_yazi(palette, "dark")
+    assert "[manager]" in result
+    assert "[status]" in result
+    assert "marker_copied" in result
+    assert "mode_normal" in result
+
+def test_generate_yazi_light():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_yazi(palette, "light")
+    assert "Nepes Light" in result
+
+def test_generate_gitui_dark():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_gitui(palette, "dark")
+    assert "selected_tab" in result
+    assert "diff_line_add" in result
+    assert "Rgb(" in result
+
+def test_generate_gitui_light():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_gitui(palette, "light")
+    assert "Nepes Light" in result
+
+def test_generate_slack_dark():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_slack(palette, "dark")
+    assert "Slack" in result
+    # Should have 8 comma-separated hex values on the last non-empty line
+    lines = [l for l in result.strip().splitlines() if not l.startswith("#")]
+    assert len(lines) == 1
+    values = lines[0].split(",")
+    assert len(values) == 8
+
+def test_generate_slack_light():
+    palette = load_palette(PALETTE_PATH)
+    result = generate_slack(palette, "light")
+    assert "Nepes Light" in result
