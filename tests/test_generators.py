@@ -130,6 +130,10 @@ def test_generate_kitty_dark():
     assert "background" in result
     assert "color0" in result
     assert "color15" in result
+    assert "tab_bar_margin_color" in result
+    assert "mark1_background" in result
+    assert "macos_titlebar_color" in result
+    assert "#23438E" in result  # blue_dim for active tab
 
 def test_generate_kitty_light():
     palette = load_palette(PALETTE_PATH)
