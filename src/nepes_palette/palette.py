@@ -1,10 +1,13 @@
-import tomllib
 from pathlib import Path
 
 
-def load_palette(path: Path) -> dict:
-    with open(path, "rb") as f:
-        return tomllib.load(f)
+def load_palette(path=None) -> dict:
+    """Return the canonical nepes palette.
+
+    The path parameter is accepted for backward compatibility but ignored.
+    """
+    from .palette_data import PALETTE
+    return PALETTE
 
 
 def resolve_color(palette: dict, theme: str, color_name: str) -> str:

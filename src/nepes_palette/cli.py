@@ -6,11 +6,9 @@ from .palette import load_palette
 from .validate import validate_palette
 from .harmony import analyze_harmony
 
-PALETTE_PATH = Path(__file__).parent.parent.parent / "palette.toml"
-
 
 def cmd_validate(args):
-    palette = load_palette(args.palette)
+    palette = load_palette()
 
     print("=== WCAG Contrast Check ===\n")
     results = validate_palette(palette)
@@ -46,7 +44,7 @@ def cmd_validate(args):
 
 def cmd_swatch(args):
     from .swatch import render_swatch
-    palette = load_palette(args.palette)
+    palette = load_palette()
     output = args.output or "swatch.png"
     render_swatch(palette, output)
     print(f"Swatch saved to {output}")
@@ -54,14 +52,13 @@ def cmd_swatch(args):
 
 def cmd_generate(args):
     from .generators import generate_all
-    palette = load_palette(args.palette)
+    palette = load_palette()
     output_dir = Path(args.output_dir) if args.output_dir else Path.cwd().parent
     generate_all(palette, output_dir)
 
 
 def main():
     parser = argparse.ArgumentParser(prog="nepes-palette", description="Nepes colorscheme generator and validator")
-    parser.add_argument("--palette", type=Path, default=PALETTE_PATH, help="Path to palette.toml")
     sub = parser.add_subparsers(dest="command", required=True)
 
     sub.add_parser("validate", help="Check WCAG contrast and color harmony")
