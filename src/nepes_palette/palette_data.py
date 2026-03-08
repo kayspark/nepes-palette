@@ -146,11 +146,10 @@ _light = {
     },
     # Per-theme semantic overrides
     "semantic": {
-        "constant": "orange_dim",
-        "number": "orange_dim",
+        "constant": "yellow_dim",
+        "number": "yellow_dim",
         "warning": "orange_dim",
         "changed": "orange_dim",
-        "heading5": "orange_dim",
     },
 }
 
@@ -161,8 +160,8 @@ _semantic = {
     "function": "cyan",
     "string": "green",
     "type": "magenta",
-    "constant": "orange",
-    "number": "orange",
+    "constant": "yellow",
+    "number": "yellow",
     "variable": "fg",
     "parameter": "fg_dim",
     "operator": "fg_subtle",
@@ -180,9 +179,9 @@ _semantic = {
     "heading2": "magenta",
     "heading3": "cyan",
     "heading4": "green",
-    "heading5": "orange",
+    "heading5": "yellow",
     "heading6": "red",
-    "heading7": "yellow",
+    "heading7": "fg_subtle",
     "heading8": "blue_bright",
 }
 
