@@ -14,6 +14,7 @@ def generate_all(palette: dict, output_dir: Path):
     from .yazi import generate_yazi
     from .gitui import generate_gitui
     from .slack import generate_slack
+    from .css import generate_css
 
     generators = {
         "bat-nepes": [
@@ -62,6 +63,9 @@ def generate_all(palette: dict, output_dir: Path):
         "slack-nepes": [
             ("nepes-dark.txt", lambda: generate_slack(palette, "dark")),
             ("nepes-light.txt", lambda: generate_slack(palette, "light")),
+        ],
+        "css-nepes": [
+            ("nepes-tokens.css", lambda: generate_css(palette)),
         ],
     }
 
