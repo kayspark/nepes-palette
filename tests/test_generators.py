@@ -11,6 +11,8 @@ from nepes_palette.generators.kitty import generate_kitty
 from nepes_palette.generators.yazi import generate_yazi
 from nepes_palette.generators.gitui import generate_gitui
 from nepes_palette.generators.slack import generate_slack
+from nepes_palette.generators.css import generate_css
+from nepes_palette.generators.safari import generate_safari
 
 def test_generate_bat_dark():
     palette = load_palette()
@@ -176,3 +178,36 @@ def test_generate_slack_light():
     palette = load_palette()
     result = generate_slack(palette, "light")
     assert "Nepes Light" in result
+
+
+def test_generate_css_tokens():
+    palette = load_palette()
+    result = generate_css(palette)
+    assert ":root {" in result
+    assert '[data-theme="light"]' in result
+    assert "--nepes-blue: #23438E" in result
+    assert "--bg-primary: #1E1C1A" in result
+    assert "--text-primary: #DCD8D4" in result
+    assert "--accent:" in result
+    assert "--chart-1:" in result
+    assert "--duration-fast:" in result
+    assert "rgba(" in result
+    assert "--bg-primary: #F8F8F8" in result  # light override
+
+
+def test_generate_safari_dark():
+    palette = load_palette()
+    result = generate_safari(palette, "dark")
+    assert "color-scheme: dark" in result
+    assert "!important" in result
+    assert "#1E1C1A" in result
+    assert "#DCD8D4" in result
+    assert "::-webkit-scrollbar" in result
+    assert "::selection" in result
+
+
+def test_generate_safari_light():
+    palette = load_palette()
+    result = generate_safari(palette, "light")
+    assert "color-scheme: light" in result
+    assert "#F8F8F8" in result
