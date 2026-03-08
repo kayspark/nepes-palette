@@ -225,12 +225,9 @@ _light["bg_glass"] = rgba(_light["bg"], 0.85)
 
 # ── Motion / Animation Tokens ──────────────────────────────
 _motion = {
-    "duration_fast": "100ms",
-    "duration_normal": "200ms",
-    "duration_slow": "400ms",
-    "easing_default": "cubic-bezier(0.4, 0, 0.2, 1)",
-    "easing_enter": "cubic-bezier(0, 0, 0.2, 1)",
-    "easing_exit": "cubic-bezier(0.4, 0, 1, 1)",
+    "ease_out_expo":    "cubic-bezier(0.16, 1, 0.3, 1)",
+    "ease_spring":      "cubic-bezier(0.34, 1.56, 0.64, 1)",
+    "transition_theme": "0.5s cubic-bezier(0.16, 1, 0.3, 1)",
 }
 
 # ── Exported Palette ────────────────────────────────────────

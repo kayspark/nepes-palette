@@ -15,6 +15,7 @@ def generate_all(palette: dict, output_dir: Path):
     from .gitui import generate_gitui
     from .slack import generate_slack
     from .css import generate_css
+    from .safari import generate_safari
 
     generators = {
         "bat-nepes": [
@@ -66,6 +67,8 @@ def generate_all(palette: dict, output_dir: Path):
         ],
         "css-nepes": [
             ("nepes-tokens.css", lambda: generate_css(palette)),
+            ("nepes-safari-dark.css", lambda: generate_safari(palette, "dark")),
+            ("nepes-safari-light.css", lambda: generate_safari(palette, "light")),
         ],
     }
 

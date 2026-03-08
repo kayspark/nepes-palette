@@ -190,7 +190,7 @@ def test_generate_css_tokens():
     assert "--text-primary: #DCD8D4" in result
     assert "--accent:" in result
     assert "--chart-1:" in result
-    assert "--duration-fast:" in result
+    assert "--ease-out-expo:" in result
     assert "rgba(" in result
     assert "--bg-primary: #F8F8F8" in result  # light override
 
