@@ -119,6 +119,16 @@ def cmd_capture(args):
                     if hasattr(e, 'stderr'):
                         print(f"    {e.stderr}", file=sys.stderr)
 
+    # Generate READMEs for all captured tools
+    from .generators.readme import generate_readme
+    all_captured = vhs_tools  # extend with browser/gui tools later
+    for tool in all_captured:
+        repo_name = f"{tool}-nepes"
+        readme_path = output_dir / repo_name / "README.org"
+        readme_path.parent.mkdir(parents=True, exist_ok=True)
+        readme_path.write_text(generate_readme(tool))
+        print(f"  Generated {readme_path}")
+
 
 def main():
     parser = argparse.ArgumentParser(prog="nepes-palette", description="Nepes colorscheme generator and validator")
