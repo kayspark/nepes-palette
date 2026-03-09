@@ -4,28 +4,28 @@ from nepes_palette.capture.runner import TapeBuilder, generate_tape, TOOL_REGIST
 
 def test_tape_builder_basic():
     """TapeBuilder produces valid VHS tape syntax."""
-    tb = TapeBuilder(width=120, height=35, font_size=14)
+    tb = TapeBuilder(font_size=14)
     tb.type("echo hello")
     tb.enter()
     tb.sleep(1)
     tb.screenshot("out.png")
     tape = tb.build()
-    assert "Set Width 120" in tape
-    assert "Set Height 35" in tape
+    assert "Set Width 1280" in tape
+    assert "Set Height 720" in tape
     assert "Set FontSize 14" in tape
     assert 'Type "echo hello"' in tape
     assert "Enter" in tape
     assert "Sleep 1s" in tape
-    assert 'Screenshot out.png' in tape
+    assert 'Screenshot "out.png"' in tape
 
 
 def test_tape_builder_output_gif():
     """TapeBuilder with output produces GIF recording."""
-    tb = TapeBuilder(width=120, height=35, output="demo.gif")
+    tb = TapeBuilder(output="demo.gif")
     tb.type("ls")
     tb.enter()
     tape = tb.build()
-    assert "Output demo.gif" in tape
+    assert 'Output "demo.gif"' in tape
 
 
 def test_generate_tape_unknown_tool():

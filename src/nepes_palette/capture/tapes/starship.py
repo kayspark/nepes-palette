@@ -3,7 +3,7 @@ from ..runner import TapeBuilder, register_tape
 
 @register_tape("starship")
 def starship_tape(theme: str, output_dir: Path) -> str:
-    tb = TapeBuilder(width=120, height=10)
+    tb = TapeBuilder(height=300)
     tb.hide()
     tb.type("cd ~/workspace/colorscheme/nepes-palette")
     tb.enter()

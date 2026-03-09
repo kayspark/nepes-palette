@@ -3,7 +3,7 @@ from ..runner import TapeBuilder, register_tape
 
 @register_tape("lsd")
 def lsd_tape(theme: str, output_dir: Path) -> str:
-    tb = TapeBuilder(width=120, height=35)
+    tb = TapeBuilder()
     tb.type("lsd -la --color=always ~/workspace/colorscheme/")
     tb.enter()
     tb.sleep(2)

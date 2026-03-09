@@ -8,7 +8,7 @@ from pathlib import Path
 class TapeBuilder:
     """Builds VHS .tape file content programmatically."""
 
-    def __init__(self, width: int = 120, height: int = 35,
+    def __init__(self, width: int = 1280, height: int = 720,
                  font_size: int = 14, output: str | None = None):
         self._lines: list[str] = []
         self._width = width
@@ -29,7 +29,7 @@ class TapeBuilder:
         return self
 
     def screenshot(self, path: str) -> "TapeBuilder":
-        self._lines.append(f"Screenshot {path}")
+        self._lines.append(f'Screenshot "{path}"')
         return self
 
     def ctrl(self, key: str) -> "TapeBuilder":
@@ -59,7 +59,7 @@ class TapeBuilder:
     def build(self) -> str:
         header = []
         if self._output:
-            header.append(f"Output {self._output}")
+            header.append(f'Output "{self._output}"')
         header.extend([
             f"Set Width {self._width}",
             f"Set Height {self._height}",

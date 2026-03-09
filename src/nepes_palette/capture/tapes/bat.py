@@ -5,7 +5,7 @@ SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "
 
 @register_tape("bat")
 def bat_tape(theme: str, output_dir: Path) -> str:
-    tb = TapeBuilder(width=120, height=35)
+    tb = TapeBuilder()
     tb.hide()
     tb.type(f"export BAT_THEME='Nepes {'Dark' if theme == 'dark' else 'Light'}'")
     tb.enter()

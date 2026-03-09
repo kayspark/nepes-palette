@@ -6,7 +6,7 @@ SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "
 @register_tape("emacs")
 def emacs_tape(theme: str, output_dir: Path) -> str:
     variant = "dark" if theme == "dark" else "light"
-    tb = TapeBuilder(width=120, height=35, output=str(output_dir / f"{theme}.gif"))
+    tb = TapeBuilder(output=str(output_dir / f"{theme}.gif"))
     tb.type(
         f"emacs -nw -Q -l nepes-{variant}-theme.el "
         f"--eval '(load-theme (quote nepes-{variant}) t)' "

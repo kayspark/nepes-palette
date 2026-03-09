@@ -5,7 +5,7 @@ SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "
 
 @register_tape("tmux")
 def tmux_tape(theme: str, output_dir: Path) -> str:
-    tb = TapeBuilder(width=120, height=35)
+    tb = TapeBuilder()
     tb.hide()
     tb.type("tmux new-session -d -s capture")
     tb.enter()

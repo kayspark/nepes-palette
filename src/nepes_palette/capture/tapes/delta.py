@@ -5,7 +5,7 @@ SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "
 
 @register_tape("delta")
 def delta_tape(theme: str, output_dir: Path) -> str:
-    tb = TapeBuilder(width=120, height=35)
+    tb = TapeBuilder()
     tb.hide()
     tb.type("export GIT_PAGER='delta --dark'") if theme == "dark" else tb.type("export GIT_PAGER='delta --light'")
     tb.enter()

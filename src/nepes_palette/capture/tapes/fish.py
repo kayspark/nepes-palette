@@ -3,7 +3,7 @@ from ..runner import TapeBuilder, register_tape
 
 @register_tape("fish")
 def fish_tape(theme: str, output_dir: Path) -> str:
-    tb = TapeBuilder(width=120, height=35)
+    tb = TapeBuilder()
     tb.hide()
     tb.type("fish")
     tb.enter()
