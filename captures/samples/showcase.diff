@@ -1,0 +1,26 @@
+diff --git a/src/extractor/api.py b/src/extractor/api.py
+index 4a2b1c3..8f9e0d1 100644
+--- a/src/extractor/api.py
++++ b/src/extractor/api.py
+@@ -15,8 +15,12 @@ from fastapi import FastAPI, HTTPException
+ app = FastAPI(title="FDC Extractor API", version="2.4.1")
+
+
++CACHE_TTL = 300  # 5 minutes
++
++
+ @app.get("/api/v1/equipment/{eqp_id}")
+-async def get_equipment(eqp_id: str):
++async def get_equipment(eqp_id: str, use_cache: bool = True):
++    """Fetch equipment data with optional caching."""
+     try:
+-        data = await fetch_from_oracle(eqp_id)
++        data = await fetch_from_oracle(eqp_id, cache_ttl=CACHE_TTL if use_cache else 0)
+         return {"status": "ok", "data": data}
+-    except OracleError:
+-        raise HTTPException(status_code=500, detail="Database error")
++    except OracleError as e:
++        logger.error(f"Oracle query failed for {eqp_id}: {e}")
++        raise HTTPException(status_code=503, detail="Database unavailable")
++    except ValueError as e:
++        raise HTTPException(status_code=400, detail=str(e))
