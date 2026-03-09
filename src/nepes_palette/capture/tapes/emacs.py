@@ -1,5 +1,5 @@
 from pathlib import Path
-from ..runner import TapeBuilder, register_tape
+from ..runner import TapeBuilder, register_tape, vhs_theme_for
 
 SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "samples"
 
@@ -7,6 +7,7 @@ SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "
 def emacs_tape(theme: str, output_dir: Path) -> str:
     variant = "dark" if theme == "dark" else "light"
     tb = TapeBuilder(output=str(output_dir / f"{theme}.gif"))
+    tb.set("Theme", vhs_theme_for(theme))
     tb.type(
         f"emacs -nw -Q -l nepes-{variant}-theme.el "
         f"--eval '(load-theme (quote nepes-{variant}) t)' "

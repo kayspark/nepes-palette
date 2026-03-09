@@ -1,11 +1,12 @@
 from pathlib import Path
-from ..runner import TapeBuilder, register_tape
+from ..runner import TapeBuilder, register_tape, vhs_theme_for
 
 SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "samples"
 
 @register_tape("delta")
 def delta_tape(theme: str, output_dir: Path) -> str:
     tb = TapeBuilder()
+    tb.set("Theme", vhs_theme_for(theme))
     tb.hide()
     tb.type("export GIT_PAGER='delta --dark'") if theme == "dark" else tb.type("export GIT_PAGER='delta --light'")
     tb.enter()

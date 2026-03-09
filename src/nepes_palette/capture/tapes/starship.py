@@ -1,9 +1,10 @@
 from pathlib import Path
-from ..runner import TapeBuilder, register_tape
+from ..runner import TapeBuilder, register_tape, vhs_theme_for
 
 @register_tape("starship")
 def starship_tape(theme: str, output_dir: Path) -> str:
     tb = TapeBuilder(height=300)
+    tb.set("Theme", vhs_theme_for(theme))
     tb.hide()
     tb.type("cd ~/workspace/colorscheme/nepes-palette")
     tb.enter()

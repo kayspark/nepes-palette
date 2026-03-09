@@ -1,5 +1,5 @@
 from pathlib import Path
-from ..runner import TapeBuilder, register_tape
+from ..runner import TapeBuilder, register_tape, vhs_theme_for
 
 SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "samples"
 
@@ -7,6 +7,7 @@ SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "
 def nvim_tape(theme: str, output_dir: Path) -> str:
     bg = "dark" if theme == "dark" else "light"
     tb = TapeBuilder(output=str(output_dir / f"{theme}.gif"))
+    tb.set("Theme", vhs_theme_for(theme))
     tb.type(f"nvim -c 'set background={bg}' -c 'colorscheme nepes' {SAMPLES_DIR}/showcase.py")
     tb.enter()
     tb.sleep(3)
