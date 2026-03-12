@@ -11,7 +11,7 @@ _brand = {
     "blue": "#23438E",
     "orange": "#FEA413",
     "red": "#D4252C",
-    "green": "#43AD49",
+    "green": "#3DDC84",
     "gray": "#A5A8AF",
     "light_gray": "#E7E6E6",
     "dark": "#1E1C1A",
@@ -30,16 +30,16 @@ _dark = {
     # Foreground ramp (4 steps: main -> dim -> subtle -> muted)
     "fg": "#DCD8D4",
     "fg_dim": "#B6B0AC",
-    "fg_subtle": "#96908C",
+    "fg_subtle": "#8A9199",
     "fg_muted": "#787068",
     # Core colors
-    "blue": "#6A84CA",
+    "blue": "#5C8CFF",
     "blue_dim": "#23438E",
     "blue_bright": "#6B8AD8",
-    "red": "#E1575C",
+    "red": "#FF5C5C",
     "red_dim": "#A81E23",
     "red_bright": "#E85B61",
-    "green": "#43AD49",
+    "green": "#3DDC84",
     "green_dim": "#348A3A",
     "green_bright": "#6BCF70",
     "orange": "#FEA413",
@@ -57,16 +57,16 @@ _dark = {
     "yellow_bright": "#F5DA7F",
     # Utility
     "cursor": "#DCD8D4",
-    "selection": "#2D4A6A",
+    "selection": "#2E4C7A",
     "border": "#3E3A38",
     "comment": "#8D847B",
     # ANSI 16
     "ansi": {
         "black": "#161412",
-        "red": "#E1575C",
-        "green": "#43AD49",
+        "red": "#FF5C5C",
+        "green": "#3DDC84",
         "yellow": "#FEA413",
-        "blue": "#6A84CA",
+        "blue": "#5C8CFF",
         "magenta": "#A274C3",
         "cyan": "#3A9BA5",
         "white": "#A5A8AF",
@@ -218,9 +218,21 @@ _light["chart"] = {
 # ── Computed: Subtle Borders & Glass Backgrounds ────────────
 _dark["border_subtle"] = rgba(_dark["border"], 0.5)
 _dark["bg_glass"] = rgba(_dark["bg"], 0.85)
+_dark["surface"] = {
+    "sunken": _dark["bg_deep"],
+    "base":   _dark["bg"],
+    "raised": _dark["bg_alt"],
+    "ring":   _brand["orange"],
+}
 
 _light["border_subtle"] = rgba(_light["border"], 0.5)
 _light["bg_glass"] = rgba(_light["bg"], 0.85)
+_light["surface"] = {
+    "sunken": _light["bg_deep"],
+    "base":   _light["bg"],
+    "raised": _light["bg_alt"],
+    "ring":   _brand["blue"],
+}
 
 # ── Motion / Animation Tokens ──────────────────────────────
 _motion = {
