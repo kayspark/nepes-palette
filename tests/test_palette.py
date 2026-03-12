@@ -28,7 +28,7 @@ def test_semantic_has_keyword():
 
 def test_resolve_color_from_theme():
     p = load_palette()
-    assert resolve_color(p, "dark", "blue") == "#6A84CA"
+    assert resolve_color(p, "dark", "blue") == "#5C8CFF"
 
 
 def test_resolve_color_falls_back_to_brand():
@@ -40,6 +40,6 @@ def test_resolve_color_falls_back_to_brand():
 def test_get_semantic_colors():
     p = load_palette()
     sem = get_semantic_colors(p, "dark")
-    assert sem["keyword"] == "#6A84CA"  # blue in dark theme
-    assert sem["string"] == "#43AD49"   # green in dark theme
-    assert sem["error"] == "#E1575C"    # red in dark theme
+    assert sem["keyword"] == "#5C8CFF"  # blue in dark theme
+    assert sem["string"] == "#3DDC84"   # green in dark theme
+    assert sem["error"] == "#FF5C5C"    # red in dark theme

@@ -111,7 +111,7 @@ def test_generate_raycast_dark():
     assert theme["appearance"] == "dark"
     assert theme["colors"]["background"] == "#1E1C1A"
     assert theme["colors"]["text"] == "#DCD8D4"
-    assert theme["colors"]["tint"] == "#6A84CA"
+    assert theme["colors"]["tint"] == "#5C8CFF"
 
 def test_generate_raycast_light():
     palette = load_palette()
