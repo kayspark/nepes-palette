@@ -31,9 +31,8 @@ def generate_bat(palette: dict, theme: str) -> str:
     sem = get_semantic_colors(palette, theme)
     theme_name = f"Nepes {'Dark' if theme == 'dark' else 'Light'}"
 
-    # Global settings
+    # Global settings (no background — inherit terminal's translucent bg)
     global_settings = {
-        "background": t["bg"],
         "foreground": t["fg"],
         "caret": t["cursor"],
         "selection": t["selection"],
@@ -71,12 +70,18 @@ def generate_bat(palette: dict, theme: str) -> str:
         _scope_entry("entity.name.tag", sem["keyword"]),
         # Attribute
         _scope_entry("entity.other.attribute-name", sem["function"]),
-        # Heading
-        _scope_entry("markup.heading, entity.name.section", sem["heading1"], font_style="bold"),
+        # Heading — use fg for maximum readability (matches nvim bold white)
+        _scope_entry("markup.heading, entity.name.section, punctuation.definition.heading", t["fg"], font_style="bold"),
         # Bold
         _scope_entry("markup.bold", t["fg"], font_style="bold"),
         # Italic
         _scope_entry("markup.italic", t["fg"], font_style="italic"),
+        # Inline code (backtick spans)
+        _scope_entry("markup.raw, markup.raw.inline, markup.inline.raw", sem["string"]),
+        # Fenced code block language tag
+        _scope_entry("markup.raw.block, fenced_code.block.language", sem["builtin"]),
+        # List marker
+        _scope_entry("markup.list, punctuation.definition.list_item", sem["keyword"]),
         # Link
         _scope_entry("markup.underline.link, string.other.link", sem["info"], font_style="underline"),
         # Inserted
