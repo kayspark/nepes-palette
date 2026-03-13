@@ -19,7 +19,7 @@ def test_generate_bat_dark():
     result = generate_bat(palette, "dark")
     assert '<?xml version="1.0"' in result
     assert "Nepes Dark" in result
-    assert "#1E1C1A" in result
+    assert "#DCD8D4" in result  # foreground (no background — inherits terminal bg)
     assert "comment" in result.lower()
     assert "keyword" in result.lower()
 
@@ -27,7 +27,7 @@ def test_generate_bat_light():
     palette = load_palette()
     result = generate_bat(palette, "light")
     assert "Nepes Light" in result
-    assert "#F8F8F8" in result
+    assert "#1C1C1E" in result  # foreground (no background — inherits terminal bg)
 
 def test_generate_delta():
     palette = load_palette()
