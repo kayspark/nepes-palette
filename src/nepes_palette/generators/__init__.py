@@ -17,8 +17,17 @@ def generate_all(palette: dict, output_dir: Path):
     from .css import generate_css
     from .safari import generate_safari
     from .vhs import generate_vhs
+    from .nvim import generate_nvim
+    from .emacs import generate_emacs_theme
 
     generators = {
+        "nvim-nepes": [
+            ("lua/nepes/palette.lua", lambda: generate_nvim(palette)),
+        ],
+        "emacs-nepes": [
+            ("nepes-dark-theme.el", lambda: generate_emacs_theme(palette, "dark")),
+            ("nepes-light-theme.el", lambda: generate_emacs_theme(palette, "light")),
+        ],
         "bat-nepes": [
             ("nepes-dark.tmTheme", lambda: generate_bat(palette, "dark")),
             ("nepes-light.tmTheme", lambda: generate_bat(palette, "light")),
