@@ -16,6 +16,7 @@ def generate_all(palette: dict, output_dir: Path):
     from .slack import generate_slack
     from .css import generate_css
     from .safari import generate_safari
+    from .vhs import generate_vhs
 
     generators = {
         "bat-nepes": [
@@ -69,6 +70,10 @@ def generate_all(palette: dict, output_dir: Path):
             ("nepes-tokens.css", lambda: generate_css(palette)),
             ("nepes-safari-dark.css", lambda: generate_safari(palette, "dark")),
             ("nepes-safari-light.css", lambda: generate_safari(palette, "light")),
+        ],
+        "vhs-nepes": [
+            ("nepes-dark.json", lambda: generate_vhs(palette, "dark")),
+            ("nepes-light.json", lambda: generate_vhs(palette, "light")),
         ],
     }
 

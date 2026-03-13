@@ -118,6 +118,12 @@ TOOL_METADATA: dict[str, dict] = {
         "install": "1. Clone css-nepes repo\n2. In Safari > Settings > Advanced > Stylesheet, select =nepes-safari-dark.css=",
         "config": None,
     },
+    "vhs": {
+        "name": "VHS",
+        "description": "Terminal recording themes for charmbracelet/vhs",
+        "install": "1. Clone this repo\n2. Use in your =.tape= file:\n#+begin_src\nSet Theme " + '{"name":"Nepes Dark",...}' + "\n#+end_src\nOr copy the full JSON from =nepes-dark.json= / =nepes-light.json=.",
+        "config": None,
+    },
 }
 
 
