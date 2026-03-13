@@ -1,6 +1,5 @@
 """Generate bat/sublime tmTheme XML from the nepes palette."""
 
-from nepes_palette.colors import lighten
 from nepes_palette.palette import get_semantic_colors, resolve_color
 
 
@@ -32,17 +31,9 @@ def generate_bat(palette: dict, theme: str) -> str:
     sem = get_semantic_colors(palette, theme)
     theme_name = f"Nepes {'Dark' if theme == 'dark' else 'Light'}"
 
-    # Brighten blue-family colors for dark theme — bat renders inside
-    # translucent terminals (WezTerm 90% opacity) where standard blue
-    # lacks contrast against the effectively lighter background.
-    if theme == "dark":
-        sem = dict(sem)  # shallow copy to avoid mutating shared dict
-        sem["keyword"] = lighten(sem["keyword"], 0.08)
-        sem["builtin"] = lighten(sem["builtin"], 0.08)
-        sem["info"] = lighten(sem["info"], 0.08)
-
-    # Global settings (no background — inherit terminal's translucent bg)
+    # Global settings
     global_settings = {
+        "background": t["bg"],
         "foreground": t["fg"],
         "caret": t["cursor"],
         "selection": t["selection"],
@@ -80,8 +71,8 @@ def generate_bat(palette: dict, theme: str) -> str:
         _scope_entry("entity.name.tag", sem["keyword"]),
         # Attribute
         _scope_entry("entity.other.attribute-name", sem["function"]),
-        # Heading — use fg for maximum readability, stand out by bold weight
-        _scope_entry("markup.heading, entity.name.section, punctuation.definition.heading", t["fg"], font_style="bold"),
+        # Heading
+        _scope_entry("markup.heading, entity.name.section", sem["heading1"], font_style="bold"),
         # Bold
         _scope_entry("markup.bold", t["fg"], font_style="bold"),
         # Italic
