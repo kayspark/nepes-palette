@@ -43,6 +43,7 @@ def generate_claude_code(palette: dict, theme: str) -> str:
         "text": rgb(t["fg"]),
         "inverseText": rgb(t["bg"]),
         "inactive": rgb(t["fg_muted"]),
+        "inactiveShimmer": shimmer(t["fg_muted"]),
         "subtle": rgb(t["fg_subtle"]),
         "suggestion": rgb(t["fg_dim"]),
         "remember": rgb(t["orange"]),
@@ -53,6 +54,11 @@ def generate_claude_code(palette: dict, theme: str) -> str:
         "error": rgb(t["red"]),
         "warning": rgb(t["orange"]),
         "warningShimmer": shimmer(t["orange"]),
+        "merged": rgb(t["magenta"]),
+        "fastMode": rgb(t["orange_bright"]),
+        "fastModeShimmer": shimmer(t["orange_bright"]),
+        "selectionBackground": rgb(t["selection"]),
+        "chromeYellow": rgb(t["yellow"]),
 
         # Diffs
         "diffAdded": rgb(t["green"]),
@@ -99,6 +105,10 @@ def generate_claude_code(palette: dict, theme: str) -> str:
         "userMessageBackground": rgb(t["bg_alt"]),
         "bashMessageBackgroundColor": rgb(t["bg_dim"]),
         "memoryBackgroundColor": rgb(t["bg_alt"]),
+
+        # Labels
+        "briefLabelYou": rgb(t["blue_bright"]),
+        "briefLabelClaude": rgb(t["orange"]),
 
         # Rate limit bar
         "rate_limit_fill": rgb(t["blue"]),
