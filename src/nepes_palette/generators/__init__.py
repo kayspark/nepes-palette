@@ -19,6 +19,7 @@ def generate_all(palette: dict, output_dir: Path):
     from .vhs import generate_vhs
     from .nvim import generate_nvim
     from .emacs import generate_emacs_theme
+    from .claude_code import generate_claude_code
 
     generators = {
         "nvim-nepes": [
@@ -83,6 +84,10 @@ def generate_all(palette: dict, output_dir: Path):
         "vhs-nepes": [
             ("nepes-dark.json", lambda: generate_vhs(palette, "dark")),
             ("nepes-light.json", lambda: generate_vhs(palette, "light")),
+        ],
+        "claude-code-nepes": [
+            ("nepes-dark.json", lambda: generate_claude_code(palette, "dark")),
+            ("nepes-light.json", lambda: generate_claude_code(palette, "light")),
         ],
     }
 
