@@ -27,27 +27,31 @@ def generate_delta(palette: dict) -> str:
     del_emph_bg = _blend(dark["red"], bg, 0.25)
 
     return f"""\
-# Nepes Dark — delta configuration
-# Include in ~/.gitconfig:  [include] path = nepes.gitconfig
+# Nepes Dark — delta color theme
+# Include in ~/.gitconfig:  [include] path = ~/workspace/colorscheme/delta-nepes/nepes.gitconfig
 
-[delta]
+[delta "nepes-dark"]
     syntax-theme = nepes-dark
-    line-numbers = true
-    side-by-side = true
+    dark = true
     minus-style = syntax "{del_bg}"
     minus-emph-style = syntax "{del_emph_bg}"
     plus-style = syntax "{add_bg}"
     plus-emph-style = syntax "{add_emph_bg}"
+    inline-hint-style = "{dark["fg_muted"]}"
     line-numbers-minus-style = "{sem["removed"]}"
     line-numbers-plus-style = "{sem["added"]}"
     line-numbers-zero-style = "{dark["fg_muted"]}"
-    line-numbers-left-format = "{{nm:>4}} "
-    line-numbers-right-format = "{{np:>4}} "
-
-[delta "decorations"]
-    commit-decoration-style = "{sem["keyword"]}" ol
+    commit-decoration-style = "{dark["blue"]}" ol
     file-style = "{dark["fg"]}" bold
     file-decoration-style = "{dark["blue"]}" ul
     hunk-header-decoration-style = "{dark["cyan"]}" box
     hunk-header-style = file line-number "{dark["fg_dim"]}"
+
+[color "diff"]
+    meta = "bold {dark["blue"]}"
+    frag = "bold {dark["cyan"]}"
+    old = "{sem["removed"]}"
+    new = "{sem["added"]}"
+    commit = "bold {dark["blue"]}"
+    whitespace = "reverse {sem["removed"]}"
 """
