@@ -215,6 +215,59 @@ _light["chart"] = {
     "recipe_bg": rgba(_light["orange"], 0.07),
 }
 
+# ── Chart-Specific Colors (WCAG AA + colorblind validated) ──
+# Order: blue, orange, green, red, teal, purple
+# These are chart-only overrides — terminal/editor palette is unchanged.
+_light["chart_bases"] = [
+    "#23438E",  # blue (unchanged)
+    "#C25609",  # orange (darkened for AA on white, CR=4.54)
+    "#017939",  # green (hue-shifted for colorblind safety, CR=5.53)
+    "#C4181F",  # red (unchanged, CR=6.00)
+    "#2D7A82",  # teal (unchanged, CR=4.98)
+    "#873D8E",  # purple (hue 295°, CR=6.80)
+]
+_light["chart_midtones"] = [
+    "#6278AB",  # blue midtone (CR=4.38)
+    "#A7693E",  # orange midtone (CR=4.44)
+    "#017939",  # green (no viable midtone — reuse base)
+    "#B75B5F",  # red midtone (CR=4.49)
+    "#56898E",  # teal midtone (CR=3.91)
+    "#96699A",  # purple midtone (CR=4.39)
+]
+
+_dark["chart_bases"] = [
+    _dark["blue"],      # #5C8CFF
+    _dark["orange"],    # #FEA413
+    _dark["green"],     # #3DDC84
+    _dark["red"],       # #FF5C5C
+    _dark["cyan"],      # #3A9BA5
+    _dark["magenta"],   # #A274C3
+]
+_dark["chart_midtones"] = [
+    _dark["blue_bright"],     # #6B8AD8
+    _dark["orange_bright"],   # #FFBD4A
+    _dark["green_bright"],    # #6BCF70
+    _dark["red_bright"],      # #E85B61
+    _dark["cyan_bright"],     # #5CBDC7
+    _dark["magenta_bright"],  # #BB8EDA
+]
+
+# SPC (Statistical Process Control) semantic palette
+_light["spc"] = {
+    "center_line":   "#23438E",
+    "data_points":   "#5A7EB0",
+    "control_limit": "#6A6A6A",
+    "spec_limit":    "#C25609",
+    "violation":     "#C4181F",
+}
+_dark["spc"] = {
+    "center_line":   _dark["blue"],
+    "data_points":   _dark["blue_bright"],
+    "control_limit": _dark["fg_subtle"],
+    "spec_limit":    _dark["orange"],
+    "violation":     _dark["red"],
+}
+
 # ── Computed: Subtle Borders & Glass Backgrounds ────────────
 _dark["border_subtle"] = rgba(_dark["border"], 0.5)
 _dark["bg_glass"] = rgba(_dark["bg"], 0.85)
