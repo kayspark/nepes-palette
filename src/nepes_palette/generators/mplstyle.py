@@ -1,6 +1,11 @@
 """Generate matplotlib style files from the nepes palette."""
 
 
+def _q(hex_color: str) -> str:
+    """Quote a hex color for mplstyle format."""
+    return f'"{hex_color}"'
+
+
 def generate_mplstyle(palette: dict, theme: str) -> str:
     """Generate a .mplstyle file for matplotlib."""
     t = palette[theme]
@@ -8,67 +13,45 @@ def generate_mplstyle(palette: dict, theme: str) -> str:
     midtones = t["chart_midtones"]
     # 12-color cycle: 6 bases then 6 midtones
     cycle = bases + midtones
-    cycle_str = ", ".join(f"'{c}'" for c in cycle)
+    # mplstyle cycler format: cycler('color', ['#hex', '#hex', ...])
+    cycle_items = ", ".join(f'"{c}"' for c in cycle)
 
-    if theme == "dark":
-        return f"""\
-# Nepes Dark — matplotlib style
-# Install: cp to ~/.config/matplotlib/stylelib/nepes-dark.mplstyle
-# Use: plt.style.use('nepes-dark')
+    label = "Dark" if theme == "dark" else "Light"
+    bg = _q(t["bg"]) if theme == "dark" else "white"
+    fg = _q(t["fg"])
+    fg_dim = _q(t["fg_dim"])
+    edge = _q(t["fg_muted"]) if theme == "dark" else _q(t["fg_subtle"])
+    grid = _q(t["bg_hl"]) if theme == "dark" else _q(t["bg_alt"])
+    legend_bg = _q(t["bg_alt"]) if theme == "dark" else "white"
+    legend_edge = _q(t["border"])
 
-axes.prop_cycle: cycler('color', [{cycle_str}])
-axes.facecolor: {t["bg"]}
-axes.edgecolor: {t["fg_muted"]}
-axes.labelcolor: {t["fg"]}
+    return f"""\
+# Nepes {label} — matplotlib style
+# Install: cp to ~/.config/matplotlib/stylelib/nepes-{theme}.mplstyle
+# Use: plt.style.use('nepes-{theme}')
+
+axes.prop_cycle: cycler('color', [{cycle_items}])
+axes.facecolor: {bg}
+axes.edgecolor: {edge}
+axes.labelcolor: {fg}
 axes.grid: True
 
-figure.facecolor: {t["bg"]}
-figure.edgecolor: {t["bg"]}
+figure.facecolor: {bg}
+figure.edgecolor: {bg}
 
-text.color: {t["fg"]}
+text.color: {fg}
 
-xtick.color: {t["fg_dim"]}
-ytick.color: {t["fg_dim"]}
+xtick.color: {fg_dim}
+ytick.color: {fg_dim}
 
-grid.color: {t["bg_hl"]}
+grid.color: {grid}
 grid.alpha: 0.8
 grid.linestyle: --
 
-legend.facecolor: {t["bg_alt"]}
-legend.edgecolor: {t["border"]}
+legend.facecolor: {legend_bg}
+legend.edgecolor: {legend_edge}
 legend.framealpha: 0.9
 
-savefig.facecolor: {t["bg"]}
-savefig.edgecolor: {t["bg"]}
-"""
-    else:
-        return f"""\
-# Nepes Light — matplotlib style
-# Install: cp to ~/.config/matplotlib/stylelib/nepes-light.mplstyle
-# Use: plt.style.use('nepes-light')
-
-axes.prop_cycle: cycler('color', [{cycle_str}])
-axes.facecolor: white
-axes.edgecolor: {t["fg_subtle"]}
-axes.labelcolor: {t["fg"]}
-axes.grid: True
-
-figure.facecolor: white
-figure.edgecolor: white
-
-text.color: {t["fg"]}
-
-xtick.color: {t["fg_dim"]}
-ytick.color: {t["fg_dim"]}
-
-grid.color: {t["bg_alt"]}
-grid.alpha: 0.8
-grid.linestyle: --
-
-legend.facecolor: white
-legend.edgecolor: {t["border"]}
-legend.framealpha: 0.9
-
-savefig.facecolor: white
-savefig.edgecolor: white
+savefig.facecolor: {bg}
+savefig.edgecolor: {bg}
 """
