@@ -212,3 +212,20 @@ def test_generate_safari_light():
     result = generate_safari(palette, "light")
     assert "color-scheme: light" in result
     assert "#F8F8F8" in result
+
+
+def test_generate_mplstyle_light():
+    palette = load_palette()
+    from nepes_palette.generators.mplstyle import generate_mplstyle
+    result = generate_mplstyle(palette, "light")
+    assert "axes.prop_cycle" in result
+    assert "#23438E" in result  # blue chart base
+    assert "axes.facecolor: white" in result
+
+
+def test_generate_mplstyle_dark():
+    palette = load_palette()
+    from nepes_palette.generators.mplstyle import generate_mplstyle
+    result = generate_mplstyle(palette, "dark")
+    assert "axes.prop_cycle" in result
+    assert "#1E1C1A" in result  # dark bg

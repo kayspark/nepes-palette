@@ -20,6 +20,7 @@ def generate_all(palette: dict, output_dir: Path):
     from .nvim import generate_nvim
     from .emacs import generate_emacs_theme
     from .claude_code import generate_claude_code
+    from .mplstyle import generate_mplstyle
 
     generators = {
         "nvim-nepes": [
@@ -88,6 +89,10 @@ def generate_all(palette: dict, output_dir: Path):
         "claude-code-nepes": [
             ("nepes-dark.json", lambda: generate_claude_code(palette, "dark")),
             ("nepes-light.json", lambda: generate_claude_code(palette, "light")),
+        ],
+        "mplstyle-nepes": [
+            ("nepes-light.mplstyle", lambda: generate_mplstyle(palette, "light")),
+            ("nepes-dark.mplstyle", lambda: generate_mplstyle(palette, "dark")),
         ],
     }
 
