@@ -51,6 +51,7 @@ grid.linestyle: --
 legend.facecolor: {legend_bg}
 legend.edgecolor: {legend_edge}
 legend.framealpha: 0.9
+legend.labelcolor: {fg}
 
 savefig.facecolor: {bg}
 savefig.edgecolor: {bg}
