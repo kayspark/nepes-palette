@@ -50,18 +50,13 @@ uv run python -m nepes_palette.cli generate -o ..
 
 * Generated Themes
 
-The =generate= command produces configs for the following tools:
+The =generate= command produces configs for 18 tools:
 
-| Tool    | Format       | Files                                    |
-|---------+--------------+------------------------------------------|
-| Neovim  | Lua          | =lua/nepes/palette.lua=                  |
-| Emacs   | Elisp        | =nepes-dark-theme.el=, =nepes-light-theme.el= |
-| bat     | tmTheme XML  | =nepes-dark.tmTheme=, =nepes-light.tmTheme= |
-| delta   | gitconfig    | =nepes.gitconfig=                          |
-| lazygit | YAML         | =nepes-dark.yml=, =nepes-light.yml=         |
-| fzf     | shell script | =nepes-dark.sh=, =nepes-light.sh=           |
-| lsd     | YAML         | =nepes-dark.yaml=, =nepes-light.yaml=       |
-| fish    | fish script  | =nepes-dark.fish=, =nepes-light.fish=       |
+#+begin_src sh
+uv run python -m nepes_palette.cli generate -o ..
+#+end_src
+
+Run =validate= before generating to ensure WCAG AA compliance.
 
 * Installation (per tool)
 
@@ -139,15 +134,63 @@ cp nepes-dark.fish ~/.config/fish/conf.d/nepes-colors.fish
 
 Fish sources all files in =conf.d/= automatically on startup.
 
-* Companion Themes (manual)
+* Theme Suite (25 repos)
 
-These themes are maintained in separate repos and are *not* yet fully integrated into the CLI generator.
+All themes derive from =palette_data.py=. Each is a standalone GitHub repo under [[https://github.com/kayspark][kayspark]].
 
-| Tool     | Repo                       | Install                               |
-|----------+----------------------------+---------------------------------------|
-| WezTerm  | =kayspark/wezterm-nepes=     | Copy to =~/.config/wezterm/colors/=     |
-| tmux     | =kayspark/tmux-nepes=        | TPM plugin                            |
-| Starship | =kayspark/starship-nepes=    | Copy palette to =~/.config/starship.toml= |
+** Editors (manual)
+
+| Tool    | Repo                                                       | Notes                            |
+|---------+------------------------------------------------------------+----------------------------------|
+| Neovim  | [[https://github.com/kayspark/nvim-nepes][nvim-nepes]]     | lazy.nvim plugin, treesitter     |
+| Emacs   | [[https://github.com/kayspark/emacs-nepes][emacs-nepes]]   | modus-themes derivative          |
+
+** Terminal (manual)
+
+| Tool     | Repo                                                             | Notes                          |
+|----------+------------------------------------------------------------------+--------------------------------|
+| WezTerm  | [[https://github.com/kayspark/wezterm-nepes][wezterm-nepes]]   | =~/.config/wezterm/colors/=      |
+| kitty    | [[https://github.com/kayspark/kitty-nepes][kitty-nepes]]       | =~/.config/kitty/=               |
+| tmux     | [[https://github.com/kayspark/tmux-nepes][tmux-nepes]]         | TPM plugin                     |
+| Starship | [[https://github.com/kayspark/starship-nepes][starship-nepes]] | =~/.config/starship.toml=       |
+
+** CLI tools (generated)
+
+| Tool    | Repo                                                             | Format       |
+|---------+------------------------------------------------------------------+--------------|
+| bat     | [[https://github.com/kayspark/bat-nepes][bat-nepes]]             | tmTheme XML  |
+| delta   | [[https://github.com/kayspark/delta-nepes][delta-nepes]]         | gitconfig    |
+| lazygit | [[https://github.com/kayspark/lazygit-nepes][lazygit-nepes]]   | YAML         |
+| fzf     | [[https://github.com/kayspark/fzf-nepes][fzf-nepes]]             | shell script |
+| lsd     | [[https://github.com/kayspark/lsd-nepes][lsd-nepes]]             | YAML         |
+| fish    | [[https://github.com/kayspark/fish-nepes][fish-nepes]]           | fish script  |
+| gitui   | [[https://github.com/kayspark/gitui-nepes][gitui-nepes]]         | RON          |
+| yazi    | [[https://github.com/kayspark/yazi-nepes][yazi-nepes]]           | TOML         |
+
+** Applications (generated)
+
+| Tool        | Repo                                                                       | Format   |
+|-------------+----------------------------------------------------------------------------+----------|
+| Chrome      | [[https://github.com/kayspark/chrome-nepes][chrome-nepes]]                 | manifest |
+| Raycast     | [[https://github.com/kayspark/raycast-nepes][raycast-nepes]]               | JSON     |
+| Slack       | [[https://github.com/kayspark/slack-nepes][slack-nepes]]                   | text     |
+| CSS         | [[https://github.com/kayspark/css-nepes][css-nepes]]                       | CSS      |
+| Claude Code | [[https://github.com/kayspark/claude-code-nepes][claude-code-nepes]]       | JSON     |
+
+** Data visualization
+
+| Tool       | Repo                                                                     | Notes                            |
+|------------+--------------------------------------------------------------------------+----------------------------------|
+| ggplot2    | [[https://github.com/kayspark/ggnepes][ggnepes]]                         | R package, =devtools::install_github= |
+| matplotlib | [[https://github.com/kayspark/mplstyle-nepes][mplstyle-nepes]]           | pip-installable, =.mplstyle=       |
+
+** Development tools
+
+| Tool              | Repo                                                                               | Notes                              |
+|-------------------+------------------------------------------------------------------------------------+------------------------------------|
+| CC statusline     | [[https://github.com/kayspark/cc-statusline-nepes][cc-statusline-nepes]]           | Claude Code status line (24-bit)   |
+| engrave-faces     | [[https://github.com/kayspark/engrave-faces][engrave-faces]]                       | Emacs → LaTeX code highlighting    |
+| VHS               | [[https://github.com/kayspark/vhs-nepes][vhs-nepes]]                               | VHS tape theme for screenshots     |
 
 * Development
 
@@ -166,19 +209,18 @@ uv run pytest tests/ -v
 
 #+begin_example
 nepes-palette/
-  palette.toml              # single source of truth
-  pyproject.toml            # project metadata (hatchling build)
+  pyproject.toml                   # project metadata (hatchling build)
   src/nepes_palette/
-    __init__.py
-    cli.py                  # validate / swatch / generate commands
-    palette.py              # TOML parser and color model
-    validators.py           # WCAG contrast and harmony checks
-    generators/             # per-tool config generators
-      bat.py
-      delta.py
-      lazygit.py
-      fzf.py
-      lsd.py
-      fish.py
-  tests/
+    palette_data.py                # single source of truth (Python dict)
+    colors.py                      # computed helpers: rgba, lighten, darken
+    cli.py                         # validate / swatch / generate / capture
+    validators.py                  # WCAG contrast and harmony checks
+    generators/                    # 18 per-tool config generators
+    capture/                       # VHS tape builders and runner
+  tests/                           # 79 tests
 #+end_example
+
+** Related documentation
+
+- [[file:docs/chart-palette-validated.md][Chart palette validation]] — WCAG AA + colorblind safety analysis for chart colors
+- [[https://github.com/kayspark/nepes-latex-template][nepes-latex-template]] — LaTeX article/beamer templates using brand colors
