@@ -7,7 +7,7 @@ SAMPLES_DIR = Path(__file__).parent.parent.parent.parent.parent / "captures" / "
 def kitty_tape(theme: str, output_dir: Path) -> str:
     tb = TapeBuilder()
     tb.set("Theme", vhs_theme_for(theme))
-    tb.type(f"bat --theme='ansi' {SAMPLES_DIR}/showcase.py")
+    tb.type(f"bat --theme='ansi' --paging=never {SAMPLES_DIR}/showcase.py")
     tb.enter()
     tb.sleep(2)
     tb.screenshot(str(output_dir / f"{theme}.png"))
