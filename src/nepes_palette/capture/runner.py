@@ -100,6 +100,7 @@ TOOL_REGISTRY: dict[str, dict] = {
     "safari":   {"interactive": False, "phase": "browser"},
     "raycast":  {"interactive": False, "phase": "gui"},
     "slack":    {"interactive": False, "phase": "gui"},
+    "cmux":     {"interactive": False, "phase": "vhs"},
 }
 
 # Maps tool name → function that builds a TapeBuilder for that tool

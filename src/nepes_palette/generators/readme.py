@@ -118,6 +118,12 @@ TOOL_METADATA: dict[str, dict] = {
         "install": "1. Clone css-nepes repo\n2. In Safari > Settings > Advanced > Stylesheet, select =nepes-safari-dark.css=",
         "config": None,
     },
+    "cmux": {
+        "name": "cmux",
+        "description": "Ghostty-based macOS terminal with vertical tabs for AI agents",
+        "install": "1. Clone this repo\n2. Copy theme files to =~/.config/ghostty/themes/=:\n#+begin_src shell\ncp nepes-dark nepes-light ~/.config/ghostty/themes/\n#+end_src\n3. Set in =~/.config/ghostty/config=:\n#+begin_src conf\ntheme = nepes-dark\n#+end_src",
+        "config": None,
+    },
     "vhs": {
         "name": "VHS",
         "description": "Terminal recording themes for charmbracelet/vhs",
