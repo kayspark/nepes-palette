@@ -4,15 +4,15 @@ from nepes_palette.generators.readme import generate_readme, TOOL_METADATA
 def test_generate_readme_bat():
     result = generate_readme("bat")
     assert "#+title: bat-nepes" in result
-    assert "[[file:docs/dark.png]]" in result
-    assert "[[file:docs/light.png]]" in result
+    assert "[[./docs/dark.png]]" in result
+    assert "[[./docs/light.png]]" in result
     assert "Installation" in result
 
 
 def test_generate_readme_nvim():
     result = generate_readme("nvim")
     assert "#+title: nvim-nepes" in result
-    assert "[[file:docs/dark.gif]]" in result  # interactive -> has GIF
+    assert "[[./docs/dark.gif]]" in result  # interactive -> has GIF
     assert "lazy.nvim" in result.lower() or "Lazy" in result
 
 

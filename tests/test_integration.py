@@ -22,7 +22,7 @@ def test_capture_dry_run_single_tool():
 
         readme = (bat_dir / "README.org").read_text()
         assert "#+title: bat-nepes" in readme
-        assert "[[file:docs/dark.png]]" in readme
+        assert "[[./docs/dark.png]]" in readme
 
 
 def test_capture_dry_run_phase():

@@ -151,7 +151,7 @@ def generate_readme(tool: str) -> str:
         "",
         "| Dark | Light |",
         "|------+-------|",
-        "| [[file:docs/dark.png]] | [[file:docs/light.png]] |",
+        "| [[./docs/dark.png]] | [[./docs/light.png]] |",
         "",
     ]
 
@@ -162,7 +162,7 @@ def generate_readme(tool: str) -> str:
             "",
             "| Dark | Light |",
             "|------+-------|",
-            "| [[file:docs/dark.gif]] | [[file:docs/light.gif]] |",
+            "| [[./docs/dark.gif]] | [[./docs/light.gif]] |",
             "",
         ])
 
