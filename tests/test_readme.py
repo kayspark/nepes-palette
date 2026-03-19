@@ -33,3 +33,18 @@ def test_readme_is_org_format():
     result = generate_readme("delta")
     assert result.startswith("#+")
     assert "#+title:" in result
+
+
+def test_readme_image_links_no_file_prefix():
+    """Org image links must use ./docs/ not file:docs/ for GitHub rendering."""
+    from nepes_palette.capture.runner import TOOL_REGISTRY
+    for tool in TOOL_REGISTRY:
+        result = generate_readme(tool)
+        assert "[[file:" not in result, f"{tool} README uses file: prefix"
+
+
+def test_generate_readme_cmux():
+    result = generate_readme("cmux")
+    assert "#+title: cmux-nepes" in result
+    assert "ghostty" in result.lower()
+    assert "[[./docs/dark.png]]" in result

@@ -38,3 +38,18 @@ def test_lsd_tape_no_gif():
     """Non-interactive tools should not produce GIF."""
     tape = generate_tape("lsd", "dark", Path("/tmp/test"))
     assert "Output" not in tape or ".gif" not in tape
+
+
+def test_terminal_tapes_use_paging_never():
+    """Terminal emulator tapes must use --paging=never to avoid pager errors."""
+    terminal_tools = ["cmux", "kitty", "wezterm"]
+    for tool in terminal_tools:
+        tape = generate_tape(tool, "dark", Path("/tmp/test"))
+        assert "--paging=never" in tape, f"{tool} tape missing --paging=never"
+
+
+def test_cmux_tape_dark():
+    tape = generate_tape("cmux", "dark", Path("/tmp/test"))
+    assert "showcase.py" in tape
+    assert "Screenshot" in tape
+    assert "--paging=never" in tape
