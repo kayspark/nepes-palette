@@ -21,6 +21,7 @@ def generate_all(palette: dict, output_dir: Path):
     from .emacs import generate_emacs_theme
     from .claude_code import generate_claude_code
     from .mplstyle import generate_mplstyle
+    from .cmux import generate_cmux
 
     generators = {
         "nvim-nepes": [
@@ -93,6 +94,10 @@ def generate_all(palette: dict, output_dir: Path):
         "mplstyle-nepes": [
             ("nepes-light.mplstyle", lambda: generate_mplstyle(palette, "light")),
             ("nepes-dark.mplstyle", lambda: generate_mplstyle(palette, "dark")),
+        ],
+        "cmux-nepes": [
+            ("nepes-dark", lambda: generate_cmux(palette, "dark")),
+            ("nepes-light", lambda: generate_cmux(palette, "light")),
         ],
     }
 
